@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="57899486-1d4a-4164-8d09-4999526d8357" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../Programacion Avanzada/Parte 1 - C#/NorelysRumbos_PipePolice/PA_Project_Unity/Assets/PipePolice/Scripts/Player.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.oculus@1.5.0/Runtime/OculusLoader.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Programacion Avanzada/Parte 1 - C#/NorelysRumbos_PipePolice/PA_Project_Unity/Assets/PipePolice/Scripts/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Oculus_Project_Unity/Assets/Multiplayer/ColorView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Programacion Avanzada/Parte 1 - C#/NorelysRumbos_PipePolice/PA_Project_Unity/Assets/PipePolice/Scripts/Police.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/Utils/EPlayerId.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Programacion Avanzada/Parte 1 - C#/NorelysRumbos_PipePolice/PA_Project_Unity/Assets/PipePolice/Scripts/Weapon.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Programacion Avanzada/Parte 1 - C#/NorelysRumbos_PipePolice/PA_Project_Unity/Assets/PipePolice/Scripts/Utils/Singleton.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../../../../Program Files/Unity/Hub/Editor/2020.1.14f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/LogFeedback.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Programacion Avanzada/Parte 1 - C#/NorelysRumbos_PipePolice/PA_Project_Unity/Assets/PipePolice/Scripts/PoliceWeapon.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Programacion Avanzada/Parte 1 - C#/NorelysRumbos_PipePolice/PA_Project_Unity/Assets/PipePolice/Scripts/Bullet.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/UserPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FE84F4A7-54DA-4A6B-B64F-CA409D40938A/51/10a53b31/Debug.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/PoolManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Programacion Avanzada/Parte 1 - C#/NorelysRumbos_PipePolice/PA_Project_Unity/Assets/PipePolice/Scripts/PoolManager.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/ConnectionPlayerControl.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/Utils/Singleton.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/PhotonAvatarView.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/LogFeedback.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/Utils/Constants.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/Utils/EPlayerIds.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/Utils/EPlayerId.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/BattleGameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/ConnectionManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/PoolManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Plugins/Android/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/PipeCounter.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/SnowBallController.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/ConnectionPlayerControl.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/BattleGameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/UserPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParabolicMootionBattle/Scripts/SnowWeapon.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1oAUHR0zq7t8BoGwzTw8Yqwoltq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30010834" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="57899486-1d4a-4164-8d09-4999526d8357" name="Default Changelist" comment="" />
+      <created>1612728800651</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612728800651</updated>
+      <workItem from="1612728812122" duration="607000" />
+      <workItem from="1612806890665" duration="9253000" />
+      <workItem from="1612990393298" duration="4851000" />
+      <workItem from="1613841600770" duration="10603000" />
+      <workItem from="1613907784984" duration="10222000" />
+      <workItem from="1614076819707" duration="1961000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1612996672908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672908" />
+    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1612996672908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672908" />
+    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1612996672908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672908" />
+    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1612996672908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672908" />
+    <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state width="1877" height="375" key="GridCell.Tab.1.center" timestamp="1612996672908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672908" />
+    <state width="1877" height="375" key="GridCell.Tab.1.left" timestamp="1612996672908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672908" />
+    <state width="1877" height="375" key="GridCell.Tab.1.right" timestamp="1612996672908">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672908" />
+    <state width="1877" height="375" key="GridCell.Tab.2.bottom" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state width="1877" height="375" key="GridCell.Tab.2.center" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state width="1877" height="375" key="GridCell.Tab.2.left" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state width="1877" height="375" key="GridCell.Tab.2.right" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state width="1877" height="375" key="GridCell.Tab.3.bottom" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state width="1877" height="375" key="GridCell.Tab.3.center" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state width="1877" height="375" key="GridCell.Tab.3.left" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state width="1877" height="375" key="GridCell.Tab.3.right" timestamp="1612996672909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612996672909" />
+    <state x="552" y="253" width="815" height="534" key="find.popup" timestamp="1613917190195">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" width="815" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613917190195" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1613910155737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613910155737" />
+  </component>
+</project>
