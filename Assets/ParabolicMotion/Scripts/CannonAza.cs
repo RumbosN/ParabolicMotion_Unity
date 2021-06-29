@@ -6,6 +6,7 @@ public class CannonAza : MonoBehaviour
     [SerializeField] private EHandSide _handSide;
 
     private Transform _transform;
+    private Collider _collider;
     private float _minDistance;
 
     public EHandSide HandSide => _handSide;
@@ -15,6 +16,7 @@ public class CannonAza : MonoBehaviour
         InactiveHand();
         _transform = transform;
         _minDistance = BattleGameManager.instance.minDistanceHandToActiveAza;
+        _collider = GetComponent<Collider>();
     }
 
     public void ActiveHand()

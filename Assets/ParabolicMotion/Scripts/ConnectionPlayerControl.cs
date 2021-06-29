@@ -40,7 +40,7 @@ public class ConnectionPlayerControl : MonoBehaviourPunCallbacks
         ovrCameraRigTransform.position = playerPosition;
         ovrCameraRigTransform.rotation = playerRotation;
 
-        UserPlayer player = _spawnedPlayerPrefab.GetComponent<UserPlayer>();
+        PhotonUserPlayer player = _spawnedPlayerPrefab.GetComponent<PhotonUserPlayer>();
         player.SetupPlayer(playerId, ovrCameraRigTransform);
         BattleGameManager.instance.currentPlayer = playerId;
     }

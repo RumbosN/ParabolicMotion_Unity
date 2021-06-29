@@ -3,26 +3,26 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
-public class SnowBallController : MonoBehaviourPun, IPunObservable
+public class PhotonSnowBallController : MonoBehaviourPun, IPunObservable, ISnowBallController
 {
     protected Rigidbody _rb;
     protected BattleGameManager _battleGameManager;
     protected Transform _transform;
     protected bool _shouldDespawn;
-    
+
     private void Awake()
     {
         _battleGameManager = BattleGameManager.instance;
         _shouldDespawn = true;
         _rb = GetComponent<Rigidbody>();
         _transform = GetComponent<Transform>();
-        
+
         if (!photonView.IsMine)
         {
             _rb.isKinematic = true;
             _shouldDespawn = false;
         }
-        
+
     }
 
     private void OnEnable()
@@ -50,6 +50,16 @@ public class SnowBallController : MonoBehaviourPun, IPunObservable
         }
     }
 
+    public bool IsMine() {
+	    return photonView != null && photonView.IsMine;
+    }
+
+    public void SetShootAngle(float angle) {
+    }
+
+    public void SetForward(Vector3 forward) {
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (photonView.IsMine)
@@ -60,7 +70,7 @@ public class SnowBallController : MonoBehaviourPun, IPunObservable
 
     private IEnumerator DespawnTimer()
     {
-        yield return new WaitForSeconds(_battleGameManager.TimeToDespawnSnowBall);
+        yield return new WaitForSeconds(_battleGameManager.TimeToSpawnSnowBall);
         Despawn();
     }
 

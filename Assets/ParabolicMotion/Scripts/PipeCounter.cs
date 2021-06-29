@@ -20,16 +20,16 @@ public class PipeCounter : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider other)
     {
-        var snowBallController = other.gameObject.GetComponent<SnowBallController>();
+	    ISnowBallController snowBallController = other.gameObject.GetComponent<ISnowBallController>();
 
-        if (snowBallController)
+        if (snowBallController != null)
         {
             snowBallController.DontDespawn();
             _meshRenderer.material = counterMaterial;
             StartCoroutine(ResetMaterial());
 
             // Just increase the point when the currentUser is the owner of the SnowBall
-            if (snowBallController.photonView != null && snowBallController.photonView.IsMine)
+            if (snowBallController.IsMine())
             {
                 IncreasePoint();
             }
