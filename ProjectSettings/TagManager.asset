@@ -15,9 +15,9 @@ TagManager:
   - 
   - Right
   - Left
-  - 
-  - 
-  - 
+  - PlayerWalls
+  - Grabbable
+  - Player
   - 
   - 
   - 
