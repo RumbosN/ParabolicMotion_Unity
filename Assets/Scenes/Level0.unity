@@ -1616,6 +1616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerOVRCameraRig-GloveHand
       objectReference: {fileID: 0}
+    - target: {fileID: 2265496453128645881, guid: 5c9410ae416171241b82d12178de4ed7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2265496453128679641, guid: 5c9410ae416171241b82d12178de4ed7, type: 3}
       propertyPath: m_RootOrder
       value: 1
