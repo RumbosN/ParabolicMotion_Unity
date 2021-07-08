@@ -2,7 +2,7 @@
 
 public class Handeable : MonoBehaviour
 {
-	public string poseName;
+	public EHandPose poseName;
 	public Transform attachPointRight;
 	public Transform attachPointLeft;
 

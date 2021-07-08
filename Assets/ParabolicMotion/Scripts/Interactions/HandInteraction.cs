@@ -14,6 +14,7 @@ public class HandInteraction : MonoBehaviour
 	public Handeable AttachedObject => attachedObj;
 
 	private FixedJoint joint;
+	private string _poseAnimatorVariable = "pose";
 
 	void Start() {
 		joint = GetComponent<FixedJoint>();
@@ -96,10 +97,7 @@ public class HandInteraction : MonoBehaviour
 			attachedObj = handeable;
 			attachedObj.SendMessage("OnAttachBegin", this, SendMessageOptions.DontRequireReceiver);
 
-			if (handeable.poseName != "")
-			{
-				animator?.SetBool(handeable.poseName, true);
-			}
+			animator?.SetInteger(_poseAnimatorVariable, (int)handeable.poseName);
 		}
 	}
 
@@ -110,10 +108,7 @@ public class HandInteraction : MonoBehaviour
 			attachedObj.SendMessage("OnAttachEnd", this, SendMessageOptions.DontRequireReceiver);
 			joint.connectedBody = null;
 
-			if (attachedObj.poseName != "")
-			{
-				animator?.SetBool(attachedObj.poseName, false);
-			}
+			animator?.SetInteger(_poseAnimatorVariable, (int)EHandPose.Default);
 
 			attachedObj = null;
 		}
