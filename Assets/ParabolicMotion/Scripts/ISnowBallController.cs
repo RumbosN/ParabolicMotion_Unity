@@ -4,10 +4,7 @@ using UnityEngine;
 
 public interface ISnowBallController {
 
-	void SetVelocity(Vector3 velocity);
+	void SetVelocity(Vector3 velocity, float? shootAngle, Vector3? forward);
 	void DontDespawn();
 	bool IsMine();
-	void SetShootAngle(float angle);
-	void SetForward(Vector3 forward);
-
 }

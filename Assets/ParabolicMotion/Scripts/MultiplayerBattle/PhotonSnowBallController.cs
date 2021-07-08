@@ -34,7 +34,7 @@ public class PhotonSnowBallController : MonoBehaviourPun, IPunObservable, ISnowB
         }
     }
 
-    public void SetVelocity(Vector3 velocity)
+    public void SetVelocity(Vector3 velocity, float? shootAngle, Vector3? forward)
     {
         if (photonView.IsMine)
         {

@@ -9,11 +9,6 @@ public class Spawner : MonoBehaviour
 
 	GameObject current;
 
-	void Start()
-	{
-		DoSpawn();
-	}
-
 	void Update()
 	{
 		// If there are an object, check the distance to the area to create a new object.
@@ -25,6 +20,9 @@ public class Spawner : MonoBehaviour
             {
 				DoSpawn();
             }
+		}
+		else {
+			DoSpawn();
 		}
 	}
 

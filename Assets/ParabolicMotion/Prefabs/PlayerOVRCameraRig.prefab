@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _leftHandMeshRenderer: {fileID: 8705891825695826304}
-  _rightHandMeshRenderer: {fileID: 0}
+  _rightHandMeshRenderer: {fileID: 7244439419426877708}
 --- !u!114 &8705891824951668175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,5 +737,10 @@ PrefabInstance:
 --- !u!4 &8103247510499588605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8026048889247726807, guid: 602e63d20b6fe3843874efc9a76495f6, type: 3}
+  m_PrefabInstance: {fileID: 2240193770251486506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7244439419426877708 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8908031112021062694, guid: 602e63d20b6fe3843874efc9a76495f6, type: 3}
   m_PrefabInstance: {fileID: 2240193770251486506}
   m_PrefabAsset: {fileID: 0}

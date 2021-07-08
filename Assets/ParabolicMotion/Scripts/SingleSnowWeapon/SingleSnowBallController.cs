@@ -6,54 +6,29 @@ using UnityEngine.PlayerLoop;
 
 public class SingleSnowBallController : MonoBehaviour, ISnowBallController {
 
-	protected bool _isMoving = true;
-	protected Vector3 _initialVelocity;
     protected BattleGameManager _battleGameManager;
-    protected Transform _transform;
-    protected bool _shouldDespawn;
+    protected ParabolicMotionPhysics _parabolicMotionPhysics;
+    [SerializeField] protected bool _shouldDespawn = true;
 
-    protected float Voy;
-    protected float Vox;
-    protected float alpha;
-    protected Vector3 fw;
 
     private void Awake()
     {
         _battleGameManager = BattleGameManager.instance;
-        _shouldDespawn = true;
-        _transform = GetComponent<Transform>();
-        _isMoving = true;
+        _parabolicMotionPhysics = GetComponent<ParabolicMotionPhysics>();
     }
 
-    private void OnEnable()
+	private void OnEnable()
     {
         StartCoroutine(DespawnTimer());
     }
 
-    private void FixedUpdate() {
-	    if (_isMoving) {
-		    float t = Time.deltaTime;
-		    float g = _battleGameManager.Gravity;
-
-		    Vector3 currentX = new Vector3(_transform.position.x, 0.0f, _transform.position.z);
-		    Vector3 fwX = new Vector3(fw.x, 0.0f, fw.z).normalized;
-		    Vector3 X = currentX + (fwX * Vox * t);
-
-		    Vector3 currentY = new Vector3(0.0f, _transform.position.y, 0.0f);
-		    var Vy = Voy + g * t;
-		    Vector3 Y = currentY + (Vector3.up * Vy * t) + (Vector3.up * 0.5f * g * t * t);
-
-		    _transform.position = X + Y;
-
-		    Voy = Vy;
-        }
-    }
-
-    public void SetVelocity(Vector3 velocity)
+    public void SetVelocity(Vector3 velocity, float? shootAngle, Vector3? forward)
     {
-        _initialVelocity = velocity;
-        Voy = (float) (Math.Sin(alpha) * velocity.magnitude);
-        Vox = (float) (Math.Cos(alpha) * velocity.magnitude);
+	    if (forward == null || shootAngle == null) {
+		    throw new ArgumentException("forward and shoot angle cannot be null");
+	    }
+
+	    _parabolicMotionPhysics.SetupMovement(velocity, (float)shootAngle, (Vector3)forward);
     }
 
     public void DontDespawn()
@@ -61,19 +36,14 @@ public class SingleSnowBallController : MonoBehaviour, ISnowBallController {
         _shouldDespawn = false;
     }
 
-    public bool IsMine() {
+    public bool IsMine()
+    {
 	    return true;
     }
 
-    public void SetShootAngle(float angle) {
-	    alpha = angle;
-    }
-
-    public void SetForward(Vector3 forward) {
-	    fw = forward;
-    }
-
-    private void OnCollisionEnter(Collision other) {
+    private void OnCollisionEnter(Collision other)
+    {
+	    _parabolicMotionPhysics.StopMovement();
         Despawn();
     }
 
@@ -85,10 +55,9 @@ public class SingleSnowBallController : MonoBehaviour, ISnowBallController {
 
     private void Despawn()
     {
-	    _isMoving = false;
         if (_shouldDespawn)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

@@ -13,15 +13,12 @@ public class BattleGameManager : Singleton<BattleGameManager>
     [SerializeField] private Transform _worldTransform;
     [SerializeField] private AudioClip _newPointSound;
     [SerializeField] private AudioClip _pointAgainstSound;
-    [SerializeField] private float _gravity = -10.0f;
-
 
     private Dictionary<EPlayerId, int> _playerPoints;
     private AudioSource _soundEffects;
 
     public int TimeToSpawnSnowBall => _timeToSpawnSnowBall;
     public Transform WorldTransform => _worldTransform;
-    public float Gravity => _gravity;
 
     public Dictionary<EPlayerId, int> PlayerPoints => _playerPoints;
 

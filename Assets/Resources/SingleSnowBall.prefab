@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1142956579135311297}
   - component: {fileID: 6856694949771424248}
   - component: {fileID: 4601472793622209672}
+  - component: {fileID: 358611639678349146}
   m_Layer: 0
   m_Name: SingleSnowBall
   m_TagString: Untagged
@@ -123,5 +124,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 912e6cb89760d694393d8145a6ecaba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldDespawn: 0
+--- !u!114 &358611639678349146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349394159693806695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d28f029530f93b43b7c64010ca1c0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

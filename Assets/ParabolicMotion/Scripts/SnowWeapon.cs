@@ -149,9 +149,7 @@ public abstract class SnowWeapon : MonoBehaviourPun
 	    ISnowBallController ballController = snowBall.GetComponent<ISnowBallController>();
 
 	    var shootAngle = GetShootAngle();
-	    ballController?.SetShootAngle(shootAngle);
-        ballController?.SetForward(_snowBallSpawn.forward);
-	    ballController?.SetVelocity(GetVelocityVector(shootAngle));
+	    ballController?.SetVelocity(GetVelocityVector(shootAngle), shootAngle, _snowBallSpawn.forward);
 	    _isPressed = false;
     }
 

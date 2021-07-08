@@ -33,7 +33,7 @@ public class Level0Manager : Singleton<Level0Manager> {
     private void UpdateScreeTexts()
     {
 	    if (_lastReleaseTime > 0 && _lastImpactTime < 0) {
-		    _timeText.text = $"{Math.Round(Time.time - _lastReleaseTime, 2)} sg";
+		    _timeText.text = $"{Math.Round(Time.time - _lastReleaseTime, 4, MidpointRounding.AwayFromZero)} sg | {Time.time - _lastReleaseTime}";
 	    }
     }
 
