@@ -41,12 +41,12 @@ public class Level0Manager : Singleton<Level0Manager> {
     private void UpdateScreeTexts()
     {
 	    if (_lastReleaseTime > 0 && _lastImpactTime < 0) {
-		    _timeText.text = $"{Math.Round(Time.time - _lastReleaseTime, 4, MidpointRounding.AwayFromZero)} sg | {Time.time - _lastReleaseTime}";
+		    _timeText.text = $"{Math.Round(Time.time - _lastReleaseTime, 4, MidpointRounding.AwayFromZero)} sg";
 	    }
     }
 
     private void SetTrie() {
-        var landPosition = new Vector3(_playerLand.position.x, _tries[_trie] - (_maxCliffHeight / 2.0f), _playerLand.position.z);
+        var landPosition = new Vector3(_playerLand.position.x, _tries[_trie] - _maxCliffHeight, _playerLand.position.z);
 	    _playerLand.position = landPosition;
     }
 

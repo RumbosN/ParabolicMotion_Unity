@@ -483,6 +483,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3129558846348005355, guid: 1c3136f9cf8e50f4299c2d83288a78bc, type: 3}
+      propertyPath: m_text
+      value: Ingrese respuesta
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129558846348005355, guid: 1c3136f9cf8e50f4299c2d83288a78bc, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3783970151077845590, guid: 1c3136f9cf8e50f4299c2d83288a78bc, type: 3}
       propertyPath: m_Type
       value: 1

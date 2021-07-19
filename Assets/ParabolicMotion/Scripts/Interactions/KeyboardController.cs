@@ -38,7 +38,7 @@ public class KeyboardController : MonoBehaviour {
 	}
 
 	public void RemoveLastToInput() {
-		currentInputText.RemoveLast();
+		currentInputText?.RemoveLast();
 	}
 
 	private void ShowError() {
