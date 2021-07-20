@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SingleUserPlayerWeaponVr : UserPlayerWeaponVR {
 
-	[SerializeField] protected MeshRenderer _leftHandMeshRenderer;
-	[SerializeField] protected MeshRenderer _rightHandMeshRenderer;
+	[SerializeField] protected GameObject _leftHandMeshRenderer;
+	[SerializeField] protected GameObject _rightHandMeshRenderer;
 
     protected override void Awake() {
 		base.Awake();
@@ -15,8 +15,8 @@ public class SingleUserPlayerWeaponVr : UserPlayerWeaponVR {
 	}
 
 	protected override void HideHands(bool showHands) {
-		_leftHandMeshRenderer.enabled = showHands;
-		_rightHandMeshRenderer.enabled = showHands;
+		_leftHandMeshRenderer.SetActive(showHands);
+		_rightHandMeshRenderer.SetActive(showHands);
 	}
 
 	public override void SetupPlayer(EPlayerId playerId, Transform ovrCameraRigTransform) {

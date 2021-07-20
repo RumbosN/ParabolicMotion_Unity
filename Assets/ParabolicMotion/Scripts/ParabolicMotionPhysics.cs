@@ -56,6 +56,6 @@ public class ParabolicMotionPhysics : MonoBehaviour
 
 	public void StopMovement() {
 		_isMoving = false;
-		GetComponent<Rigidbody>().isKinematic = false;
+		//GetComponent<Rigidbody>().isKinematic = false;
 	}
 }

@@ -19,7 +19,6 @@ public class Level0Manager : Singleton<Level0Manager> {
 	[SerializeField] private UnityEvent _successfulResponseEvent;
 	[SerializeField] private UnityEvent _failedResponseEvent;
 	[SerializeField] private UnityEvent _finishedLevelEvent;
-	[SerializeField] private int _waitingSecondsToFinishLevel;
 
 	private float[] _tries;
     private int _trie = 0;
@@ -82,14 +81,13 @@ public class Level0Manager : Singleton<Level0Manager> {
 		    var answer = float.Parse(answerField.text);
 		    if (Math.Abs(answer - _tries[_trie]) < toleranceError) {
 			    _trie += 1;
-			    _successfulResponseEvent.Invoke();
 
 			    if (_trie == _maxNumberTries) {
-				    StartCoroutine(FinishedLevel());
-			    }
+					_finishedLevelEvent.Invoke();
+				}
 			    else {
-				    SetTrie();
-			    }
+					_successfulResponseEvent.Invoke();
+				}
 		    }
 		    else {
 			    _failedResponseEvent.Invoke();
@@ -97,8 +95,15 @@ public class Level0Manager : Singleton<Level0Manager> {
 		}
     }
 
-    private IEnumerator FinishedLevel() {
-		yield return new WaitForSeconds(_waitingSecondsToFinishLevel);
-		_finishedLevelEvent.Invoke();
+    public void ChangeTrie(int secondsToWait) {
+		StartCoroutine(
+			LevelManager.instance.WaitToExecute(
+				secondsToWait,
+				(() => {
+					SetTrie();
+					LevelManager.instance.ResetLevel();
+				})
+			)
+		);
     }
 }

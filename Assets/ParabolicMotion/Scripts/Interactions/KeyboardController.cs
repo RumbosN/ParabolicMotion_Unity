@@ -50,4 +50,13 @@ public class KeyboardController : MonoBehaviour {
 		yield return new WaitForSeconds(waitingTimeToHideErrorText);
 		textError.SetActive(false);
 	}
+
+	public void ReleaseCurrentInput()
+    {
+		if (currentInputText != null)
+		{
+			currentInputText.UnHover();
+			currentInputText = null;
+		}
+	}
 }
