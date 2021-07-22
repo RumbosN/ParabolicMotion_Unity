@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,10 +10,12 @@ public class LevelManager : Singleton<LevelManager>
 	[SerializeField] private Transform _playerStartPosition;
 	[SerializeField] private UnityEvent _resetLevelEvent;
 
-	public void ResetLevel() {
+	public void ResetLevel(bool resetPlayer) {
 		_resetLevelEvent.Invoke();
-		Task.Delay(3000).Wait();
-		_player.transform.position = _playerStartPosition.position;
+
+		if (resetPlayer) {
+			_player.transform.position = _playerStartPosition.transform.position;
+		}
 	}
 
 	public IEnumerator WaitToExecute(int timeToWait, Action action) {

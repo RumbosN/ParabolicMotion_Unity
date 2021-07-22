@@ -13,7 +13,10 @@ public class Level0Manager : Singleton<Level0Manager> {
 	[SerializeField] private int _maxNumberTries = 3;
 	[SerializeField] private int _minCliffHeight = 25;
 	[SerializeField] private int _maxCliffHeight = 50;
+	[SerializeField] private float _topOfCliff = 50.0f;
 	[SerializeField] private Transform _playerLand;
+	[SerializeField] private float _zeroGroundUp = 0;
+	[SerializeField] private Transform _groundTransform;
 	[SerializeField] private TextMeshProUGUI _timeText;
 	[SerializeField] private TextMeshProUGUI _heightText;
 	[SerializeField] private UnityEvent _successfulResponseEvent;
@@ -45,8 +48,9 @@ public class Level0Manager : Singleton<Level0Manager> {
     }
 
     private void SetTrie() {
-        var landPosition = new Vector3(_playerLand.position.x, _tries[_trie] - _maxCliffHeight, _playerLand.position.z);
-	    _playerLand.position = landPosition;
+	    //var landPosition = new Vector3(_playerLand.position.x, _tries[_trie] - _maxCliffHeight, _playerLand.position.z);
+	    var groundPosition = new Vector3(_groundTransform.position.x, _maxCliffHeight - _tries[_trie] + _zeroGroundUp, _groundTransform.position.z);
+	    _groundTransform.position = groundPosition;
     }
 
     private void InitTries() {
@@ -54,7 +58,7 @@ public class Level0Manager : Singleton<Level0Manager> {
 
 	    for (int i = 0; i < _maxNumberTries; i++) {
 		    _tries[i] = Random.Range(_minCliffHeight, _maxCliffHeight + 1);
-            print($"Trie {i} -> height {_tries[i]}");
+			print($"Trie {i} -> height {_tries[i]}");
 	    }
 
 	    SetTrie();
@@ -64,7 +68,7 @@ public class Level0Manager : Singleton<Level0Manager> {
 	    _lastReleaseTime = time;
 	    _lastImpactTime = -1.0f;
 
-	    _heightText.text = $"{Math.Round(globalHeight - _tries[_trie], 2)} m";
+	    _heightText.text = $"{Math.Round(globalHeight - _topOfCliff, 2)} m";
 	    print($"Release in time {time}");
     }
 
@@ -101,7 +105,7 @@ public class Level0Manager : Singleton<Level0Manager> {
 				secondsToWait,
 				(() => {
 					SetTrie();
-					LevelManager.instance.ResetLevel();
+					LevelManager.instance.ResetLevel(false);
 				})
 			)
 		);
