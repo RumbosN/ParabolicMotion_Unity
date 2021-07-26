@@ -48,7 +48,6 @@ public class Level0Manager : Singleton<Level0Manager> {
     }
 
     private void SetTrie() {
-	    //var landPosition = new Vector3(_playerLand.position.x, _tries[_trie] - _maxCliffHeight, _playerLand.position.z);
 	    var groundPosition = new Vector3(_groundTransform.position.x, _maxCliffHeight - _tries[_trie] + _zeroGroundUp, _groundTransform.position.z);
 	    _groundTransform.position = groundPosition;
     }
@@ -68,7 +67,7 @@ public class Level0Manager : Singleton<Level0Manager> {
 	    _lastReleaseTime = time;
 	    _lastImpactTime = -1.0f;
 
-	    _heightText.text = $"{Math.Round(globalHeight - _topOfCliff, 2)} m";
+	    _heightText.text = $"{((int)((globalHeight - _topOfCliff) * 10)) / 10.0 } m";
 	    print($"Release in time {time}");
     }
 
