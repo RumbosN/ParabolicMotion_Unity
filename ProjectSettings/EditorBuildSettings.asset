@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level0.unity
     guid: 7a698247d7b6fd64a8d5670730216b69
   - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: f3dd8121a44cd534b82635514aa9b64e
+  - enabled: 1
     path: Assets/Scenes/ParabolicMotionBattle.unity
     guid: 16b482d34c8f3ac4b8ff4e40e1d97f84
   - enabled: 0
