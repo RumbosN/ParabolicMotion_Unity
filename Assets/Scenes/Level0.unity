@@ -4163,6 +4163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d87ce0c73213e41b742469586b03c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebugMode: 1
   _player: {fileID: 2041126875}
   _playerStartPosition: {fileID: 71694526}
   _resetLevelEvent:
@@ -6090,6 +6091,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2052053151}
     m_Modifications:
+    - target: {fileID: 130361928731820526, guid: c580df6c974a05e4e8d2aa52b03dba09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762188372737293425, guid: c580df6c974a05e4e8d2aa52b03dba09, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2787361263322296822, guid: c580df6c974a05e4e8d2aa52b03dba09, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

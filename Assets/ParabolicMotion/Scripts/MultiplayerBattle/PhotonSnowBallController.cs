@@ -6,13 +6,11 @@ using UnityEngine;
 public class PhotonSnowBallController : MonoBehaviourPun, IPunObservable, ISnowBallController
 {
     protected Rigidbody _rb;
-    protected BattleGameManager _battleGameManager;
     protected Transform _transform;
     protected bool _shouldDespawn;
 
     private void Awake()
     {
-        _battleGameManager = BattleGameManager.instance;
         _shouldDespawn = true;
         _rb = GetComponent<Rigidbody>();
         _transform = GetComponent<Transform>();
@@ -70,7 +68,7 @@ public class PhotonSnowBallController : MonoBehaviourPun, IPunObservable, ISnowB
 
     private IEnumerator DespawnTimer()
     {
-        yield return new WaitForSeconds(_battleGameManager.TimeToSpawnSnowBall);
+        yield return new WaitForSeconds(Constants.TimeToSpawnSnowBall);
         Despawn();
     }
 

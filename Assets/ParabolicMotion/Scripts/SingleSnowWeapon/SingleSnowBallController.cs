@@ -6,14 +6,12 @@ using UnityEngine.PlayerLoop;
 
 public class SingleSnowBallController : MonoBehaviour, ISnowBallController {
 
-    protected BattleGameManager _battleGameManager;
     protected ParabolicMotionPhysics _parabolicMotionPhysics;
     [SerializeField] protected bool _shouldDespawn = true;
 
 
     private void Awake()
     {
-        _battleGameManager = BattleGameManager.instance;
         _parabolicMotionPhysics = GetComponent<ParabolicMotionPhysics>();
     }
 
@@ -49,7 +47,7 @@ public class SingleSnowBallController : MonoBehaviour, ISnowBallController {
 
     private IEnumerator DespawnTimer()
     {
-        yield return new WaitForSeconds(_battleGameManager.TimeToSpawnSnowBall);
+        yield return new WaitForSeconds(Constants.TimeToSpawnSnowBall);
         Despawn();
     }
 

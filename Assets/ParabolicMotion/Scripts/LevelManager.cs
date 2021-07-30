@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : Singleton<LevelManager>
 {
 
+	public bool isDebugMode = true;
 	[SerializeField] private GameObject _player;
 	[SerializeField] private Transform _playerStartPosition;
 	[SerializeField] private UnityEvent _resetLevelEvent;

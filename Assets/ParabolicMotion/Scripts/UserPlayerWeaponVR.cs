@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class UserPlayerWeaponVR : MonoBehaviour
 {
-	protected EPlayerId _playerId;
     protected SnowWeapon _snowWeapon;
     protected CannonAza _snowWeaponRightHand;
     protected CannonAza _snowWeaponLeftHand;
@@ -25,7 +24,7 @@ public abstract class UserPlayerWeaponVR : MonoBehaviour
     {
         if (_snowWeapon != null)
         {
-            if (BattleGameManager.instance.isDebugMode)
+            if (LevelManager.instance.isDebugMode)
             {
                 if (OVRInput.GetDown(OVRInput.Button.One))
                 {
@@ -61,7 +60,7 @@ public abstract class UserPlayerWeaponVR : MonoBehaviour
                 _snowWeaponLeftHand.ActiveHand();
                 _snowWeaponRightHand.ActiveHand();
                 HideHands(false);
-                _snowWeapon.Rotate(_rightHandControllerAnchor.rotation.eulerAngles) ;
+                _snowWeapon.Rotate(_leftHandControllerAnchor, _rightHandControllerAnchor) ;
             }
             else
             {
@@ -85,10 +84,9 @@ public abstract class UserPlayerWeaponVR : MonoBehaviour
         _isMovingCannon = false;
     }
 
-    protected void SetupCannon()
+    protected virtual void SetupCannon()
     {
-        _snowWeapon = FindObjectsOfType<SnowWeapon>()
-            .First(weapon => weapon.PlayerId == _playerId);
+        _snowWeapon = FindObjectsOfType<SnowWeapon>().First();
 
         var cannonAzaChildren = _snowWeapon.GetComponentsInChildren<CannonAza>();
         _snowWeaponLeftHand = cannonAzaChildren.First(aza => aza.HandSide == EHandSide.LEFT);

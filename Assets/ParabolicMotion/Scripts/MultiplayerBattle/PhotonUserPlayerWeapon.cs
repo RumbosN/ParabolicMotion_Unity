@@ -6,7 +6,9 @@ using UnityEngine;
 public class PhotonUserPlayerWeapon : UserPlayerWeaponVR
 {
 
-	public float cameraRigUpOffset;
+	protected EPlayerId _playerId;
+
+    public float cameraRigUpOffset;
 
     protected Transform _ovrCameraRigTransform;
     protected OvrAvatar _localAvatar;
@@ -34,6 +36,11 @@ public class PhotonUserPlayerWeapon : UserPlayerWeaponVR
     public void UpdateAvatar()
     {
         _transform.position = _ovrCameraRigTransform.position + cameraRigUpOffset * Vector3.up;
+    }
+
+    protected override void SetupCannon() {
+	    _snowWeapon = FindObjectsOfType<PhotonSnowWeapon>().First(weapon => weapon.PlayerId == _playerId);
+	    base.SetupCannon();
     }
 
     protected override void HideHands(bool showHands) {

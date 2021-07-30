@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0db3fcc58020045a28e610649f095c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftHandMeshRenderer: {fileID: 9011384816411747609}
-  _rightHandMeshRenderer: {fileID: 3727768945220536348}
+  _leftHand: {fileID: 7528100517579938595}
+  _rightHand: {fileID: 2795683329574254118}
+  handChildModelName: ModelHand
+  handChildInteractorName: Interactor
 --- !u!1001 &845112484977046505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 948853200633596150, guid: a96fa105f5cb92c4087470fb9c6ee047, type: 3}
       propertyPath: m_Name
-      value: OVRPlayerController-weapon Variant
+      value: OVRPlayerController-weapon
       objectReference: {fileID: 0}
     - target: {fileID: 948853200633828568, guid: a96fa105f5cb92c4087470fb9c6ee047, type: 3}
       propertyPath: m_RootOrder
@@ -104,13 +106,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 948853200633596150, guid: a96fa105f5cb92c4087470fb9c6ee047, type: 3}
   m_PrefabInstance: {fileID: 845112484977046505}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9011384816411747609 stripped
+--- !u!1 &7528100517579938595 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 8553655023968442096, guid: a96fa105f5cb92c4087470fb9c6ee047, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7188693725600852170, guid: a96fa105f5cb92c4087470fb9c6ee047, type: 3}
   m_PrefabInstance: {fileID: 845112484977046505}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3727768945220536348 stripped
+--- !u!1 &2795683329574254118 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4035721460455029749, guid: a96fa105f5cb92c4087470fb9c6ee047, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3275861299020219855, guid: a96fa105f5cb92c4087470fb9c6ee047, type: 3}
   m_PrefabInstance: {fileID: 845112484977046505}
   m_PrefabAsset: {fileID: 0}

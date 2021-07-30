@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class BattleGameManager : Singleton<BattleGameManager>
 {
-    public bool isDebugMode = true;
-    public float minDistanceHandToActiveAza = 1.0f;
     public EPlayerId currentPlayer;
 
-    [SerializeField] private int _timeToSpawnSnowBall = 5;
     [SerializeField] private Transform _worldTransform;
     [SerializeField] private AudioClip _newPointSound;
     [SerializeField] private AudioClip _pointAgainstSound;
@@ -17,7 +14,6 @@ public class BattleGameManager : Singleton<BattleGameManager>
     private Dictionary<EPlayerId, int> _playerPoints;
     private AudioSource _soundEffects;
 
-    public int TimeToSpawnSnowBall => _timeToSpawnSnowBall;
     public Transform WorldTransform => _worldTransform;
 
     public Dictionary<EPlayerId, int> PlayerPoints => _playerPoints;

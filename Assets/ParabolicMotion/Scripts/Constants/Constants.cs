@@ -5,5 +5,7 @@
         public static float VelocityOffset = 10.5f;
         public static float Gravity = -10.0f;
         public static int KeyboardInteractiveLayer = 13;
+        public static float MinDistanceHandToActiveAza = 1.0f;
+        public static int TimeToSpawnSnowBall = 5;
 
 }

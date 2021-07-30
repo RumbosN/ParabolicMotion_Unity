@@ -9,7 +9,7 @@ public class LogFeedback : Singleton<LogFeedback>
     {
         feedbackText = GetComponent<TextMesh>();
         var meshRender = GetComponent<MeshRenderer>();
-        meshRender.enabled = BattleGameManager.instance.isDebugMode;
+        meshRender.enabled = LevelManager.instance.isDebugMode;
     }
 
     public void AddMessage(string message)

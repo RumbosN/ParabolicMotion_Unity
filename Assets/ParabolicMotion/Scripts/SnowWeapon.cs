@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public abstract class SnowWeapon : MonoBehaviourPun
 {
-    [SerializeField] protected EPlayerId _playerId;
+	[Header("Weapon Settings")] 
+	[SerializeField] protected Transform _middlePoint;
+
 
     [Header("Snow Ball")]
-    [SerializeField] protected GameObject _snowBallPrefab;
-    [SerializeField] protected Transform _snowBallSpawn;
+    [SerializeField] protected GameObject _projectilePrefab;
+    [SerializeField] protected Transform _projectileSpawn;
 
     [Header("Rotation")]
     [SerializeField] protected float _maximumHorizontalAngle = 45f;
@@ -30,7 +32,6 @@ public abstract class SnowWeapon : MonoBehaviourPun
     protected float _timePressed;
     protected int _velocityDirection = 1;
 
-    public EPlayerId PlayerId => _playerId;
     public float CurrentVelocity => _currentVelocity;
 
     protected Transform _transform;
@@ -63,19 +64,23 @@ public abstract class SnowWeapon : MonoBehaviourPun
         _transform.rotation = Quaternion.Euler(euler);
     }
 
-    public void Rotate(Vector3 newRotationEuler)
-    {
-        Vector3 euler = _transform.rotation.eulerAngles;
+    public void Rotate(Transform leftInteractorHand, Transform rightInteractorHand) {
+	    var handsMiddlePoint = (leftInteractorHand.position + rightInteractorHand.position) / 2;
+	    var forward = (_middlePoint.position - handsMiddlePoint).normalized;
+	    var handsVector = rightInteractorHand.position - leftInteractorHand.position;
+	    var normalPlane = Vector3.Cross(forward, Vector3.up);
 
-        if (!_freezeRotationX) {
-	        euler.x = newRotationEuler.x;
+	    var up = Vector3.Cross(forward, handsVector);
+        up = Vector3.ProjectOnPlane(Vector3.up, normalPlane);
+
+        var newRotation = Quaternion.LookRotation(forward, up).eulerAngles;
+        if (_freezeRotationX) {
+	        newRotation.x = _transform.rotation.eulerAngles.x;
         }
-
-        if (!_freezeRotationX) {
-	        euler.y = newRotationEuler.y;
+        if (_freezeRotationY) {
+	        newRotation.y = _transform.rotation.eulerAngles.y;
         }
-
-        _transform.rotation = Quaternion.Euler(euler);
+        _transform.rotation = Quaternion.Euler(newRotation);
     }
 
     protected Vector3 GetVelocityVector(float shootAngle)
@@ -96,7 +101,7 @@ public abstract class SnowWeapon : MonoBehaviourPun
 
     public float GetShootAngle()
     {
-        var fw = _transform.forward;
+        var fw = _middlePoint.forward;
         var forwardY0 = new Vector3(fw.x, 0, fw.z).normalized;
         var cosAlpha = Vector3.Dot(fw, forwardY0) / (fw.magnitude * forwardY0.magnitude);
         return Mathf.Acos(cosAlpha); // This angle is in radians
@@ -149,7 +154,7 @@ public abstract class SnowWeapon : MonoBehaviourPun
 	    ISnowBallController ballController = snowBall.GetComponent<ISnowBallController>();
 
 	    var shootAngle = GetShootAngle();
-	    ballController?.SetVelocity(GetVelocityVector(shootAngle), shootAngle, _snowBallSpawn.forward);
+	    ballController?.SetVelocity(GetVelocityVector(shootAngle), shootAngle, _projectileSpawn.forward);
 	    _isPressed = false;
     }
 
