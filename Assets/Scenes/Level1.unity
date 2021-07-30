@@ -5914,14 +5914,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2052053151}
     m_Modifications:
-    - target: {fileID: 3396469816743742331, guid: 24366b6fee9e9a84789b1e2972fd619b, type: 3}
-      propertyPath: _freezeRotationX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3396469816743742331, guid: 24366b6fee9e9a84789b1e2972fd619b, type: 3}
-      propertyPath: _freezeRotationY
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3588016941295455775, guid: 24366b6fee9e9a84789b1e2972fd619b, type: 3}
       propertyPath: m_RootOrder
       value: 6
