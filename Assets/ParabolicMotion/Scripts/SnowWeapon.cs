@@ -88,7 +88,7 @@ public abstract class SnowWeapon : MonoBehaviourPun
         var alpha = shootAngle;
         var fw = _transform.forward;
 
-        _currentVelocity = 25.0f;
+        _currentVelocity = 38f;
         var vY = Mathf.Abs(_currentVelocity * Mathf.Sin(alpha));
         var vXUser = _currentVelocity * Mathf.Cos(alpha);
 

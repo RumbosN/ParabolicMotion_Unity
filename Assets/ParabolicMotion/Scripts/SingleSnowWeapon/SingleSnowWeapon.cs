@@ -6,6 +6,6 @@ using UnityEngine.UI;
 public class SingleSnowWeapon : SnowWeapon
 {
 	public override GameObject InstantiateSnowBall() {
-		return Instantiate(_projectilePrefab, _projectileSpawn.position, _transform.rotation);
+		return Instantiate(_projectilePrefab, _projectileSpawn.position, Quaternion.Euler(Vector3.zero));
     }
 }
