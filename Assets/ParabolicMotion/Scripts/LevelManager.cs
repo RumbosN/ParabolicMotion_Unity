@@ -13,6 +13,9 @@ public class LevelManager : Singleton<LevelManager>
 	[SerializeField] private UnityEvent _resetLevelEvent;
 	[SerializeField] private string _nextLevel;
 
+	[Header("Events")]
+	public EventsResponse EventsResponse;
+
 	public void ResetLevel(bool resetPlayer) {
 		_resetLevelEvent.Invoke();
 

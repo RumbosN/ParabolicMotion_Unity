@@ -4,7 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class SingleSnowBallController : MonoBehaviour, ISnowBallController {
+public class SingleBulletController : MonoBehaviour, IBulletController {
 
     protected ParabolicMotionPhysics _parabolicMotionPhysics;
     [SerializeField] protected bool _shouldDespawn = true;
@@ -41,7 +41,6 @@ public class SingleSnowBallController : MonoBehaviour, ISnowBallController {
 
     private void OnCollisionEnter(Collision other)
     {
-	    _parabolicMotionPhysics.StopMovement();
         Despawn();
     }
 
@@ -51,7 +50,7 @@ public class SingleSnowBallController : MonoBehaviour, ISnowBallController {
         Despawn();
     }
 
-    private void Despawn()
+    public void Despawn()
     {
         if (_shouldDespawn)
         {

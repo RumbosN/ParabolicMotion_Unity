@@ -19,9 +19,6 @@ public class Level0Manager : Singleton<Level0Manager> {
 	[SerializeField] private Transform _groundTransform;
 	[SerializeField] private TextMeshProUGUI _timeText;
 	[SerializeField] private TextMeshProUGUI _heightText;
-	[SerializeField] private UnityEvent _successfulResponseEvent;
-	[SerializeField] private UnityEvent _failedResponseEvent;
-	[SerializeField] private UnityEvent _finishedLevelEvent;
 
 	private float[] _tries;
     private int _trie = 0;
@@ -78,7 +75,7 @@ public class Level0Manager : Singleton<Level0Manager> {
 
     public void ValidateQuestion(TMP_InputField answerField) {
 	    if (answerField.text.IsNullOrEmpty()) {
-		    _failedResponseEvent.Invoke();
+		    LevelManager.instance?.EventsResponse.failedResponseEvent?.Invoke();
 		}
 	    else {
 		    var answer = float.Parse(answerField.text);
@@ -86,14 +83,14 @@ public class Level0Manager : Singleton<Level0Manager> {
 			    _trie += 1;
 
 			    if (_trie == _maxNumberTries) {
-					_finishedLevelEvent.Invoke();
+					LevelManager.instance?.EventsResponse.finishedLevelEvent?.Invoke();
 				}
 			    else {
-					_successfulResponseEvent.Invoke();
+					LevelManager.instance?.EventsResponse.successfulResponseEvent?.Invoke();
 				}
 		    }
 		    else {
-			    _failedResponseEvent.Invoke();
+				LevelManager.instance?.EventsResponse.failedResponseEvent?.Invoke();
 		    }
 		}
     }

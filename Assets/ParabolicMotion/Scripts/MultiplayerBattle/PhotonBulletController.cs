@@ -3,7 +3,7 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
-public class PhotonSnowBallController : MonoBehaviourPun, IPunObservable, ISnowBallController
+public class PhotonBulletController : MonoBehaviourPun, IPunObservable, IBulletController
 {
     protected Rigidbody _rb;
     protected Transform _transform;
@@ -72,7 +72,7 @@ public class PhotonSnowBallController : MonoBehaviourPun, IPunObservable, ISnowB
         Despawn();
     }
 
-    private void Despawn()
+    public void Despawn()
     {
         if (_shouldDespawn && photonView.IsMine)
         {

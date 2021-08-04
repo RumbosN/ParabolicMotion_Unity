@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImpactTester : MonoBehaviour {
+public class ImpactTester : MonoBehaviour, IBulletController {
 
 	public AudioSource audioSource;
 	private bool _wasReleased = false;
@@ -19,11 +19,24 @@ public class ImpactTester : MonoBehaviour {
 		audioSource.Play();
 	}
 
-	private void OnCollisionEnter(Collision other) {
+	#region BulletController
+	public void SetVelocity(Vector3 velocity, float? shootAngle, Vector3? forward) {
+	}
+
+	public void DontDespawn() {
+	}
+
+	public bool IsMine() {
+		return true;
+	}
+
+	public void Despawn() {
 		if (_wasReleased) {
 			Level0Manager.instance.SetLastImpactTime(Time.time);
-			_parabolicMotionPhysics.StopMovement();
 			audioSource.Stop();
 		}
 	}
+	#endregion
+
+
 }

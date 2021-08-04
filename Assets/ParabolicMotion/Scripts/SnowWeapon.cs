@@ -1,14 +1,14 @@
 ﻿using System;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public abstract class SnowWeapon : MonoBehaviourPun
 {
 	[Header("Weapon Settings")] 
 	[SerializeField] protected Transform _middlePoint;
-
-
+    
     [Header("Snow Ball")]
     [SerializeField] protected GameObject _projectilePrefab;
     [SerializeField] protected Transform _projectileSpawn;
@@ -35,11 +35,13 @@ public abstract class SnowWeapon : MonoBehaviourPun
     public float CurrentVelocity => _currentVelocity;
 
     protected Transform _transform;
+    protected UnityEvent ShootEvent;
 
     protected void Start()
     {
         _transform = GetComponent<Transform>();
         _isPressed = false;
+        ShootEvent = new UnityEvent();
     }
 
     public void Rotate(Vector2 axisRotation)
@@ -88,7 +90,7 @@ public abstract class SnowWeapon : MonoBehaviourPun
         var alpha = shootAngle;
         var fw = _transform.forward;
 
-        _currentVelocity = 38f;
+        //_currentVelocity = 38f;
         var vY = Mathf.Abs(_currentVelocity * Mathf.Sin(alpha));
         var vXUser = _currentVelocity * Mathf.Cos(alpha);
 
@@ -151,11 +153,21 @@ public abstract class SnowWeapon : MonoBehaviourPun
 
     public void ShotSnowBall() {
 	    var snowBall = InstantiateSnowBall();
-	    ISnowBallController ballController = snowBall.GetComponent<ISnowBallController>();
+	    IBulletController ballController = snowBall.GetComponent<IBulletController>();
 
 	    var shootAngle = GetShootAngle();
 	    ballController?.SetVelocity(GetVelocityVector(shootAngle), shootAngle, _projectileSpawn.forward);
 	    _isPressed = false;
+	    ShootEvent?.Invoke();
+    }
+
+    public void SetVelocityAndShoot(float velocity) {
+	    _currentVelocity = velocity;
+        ShotSnowBall();
+    }
+
+    public void AddListener2ShootEvent(UnityAction action) {
+        ShootEvent.AddListener(action);
     }
 
     public abstract GameObject InstantiateSnowBall();

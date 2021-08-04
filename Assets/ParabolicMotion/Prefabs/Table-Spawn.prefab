@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 932081178379125053}
   - component: {fileID: 821295163430398547}
-  m_Layer: 0
-  m_Name: Wooden_Table
+  m_Layer: 14
+  m_Name: Table-Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

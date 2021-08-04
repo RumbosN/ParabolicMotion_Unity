@@ -7,5 +7,6 @@
         public static int KeyboardInteractiveLayer = 13;
         public static float MinDistanceHandToActiveAza = 1.0f;
         public static int TimeToSpawnSnowBall = 5;
+        public static string GoalTag = "Goal";
 
 }

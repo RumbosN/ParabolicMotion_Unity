@@ -15,27 +15,40 @@ public class Level1Manager : Singleton<Level1Manager> {
 	[SerializeField] private Transform _tableTransform;
 	[SerializeField] private Transform _otherGroundTransform;
 	[SerializeField] private Transform _cannonTransform;
+	[SerializeField] private int _easyLevelUntilTrie = 1;
+	[SerializeField] private SnowWeapon _snowWeapon;
+	[SerializeField] private int _velocityTriesToEnableInput = 3;
+
+
+	[Header("Text Variables")]
+	[SerializeField] private InputController _velocityInput;
+	[SerializeField] private TextMeshProUGUI _distanceText;
+	[SerializeField] private TextMeshProUGUI _vxText;
+	[SerializeField] private TextMeshProUGUI _voyText;
+	[SerializeField] private GameObject _hintEasyLevel;
+	[SerializeField] private TextMeshProUGUI _hintEasyLevelText;
 
 	[Header("Sample exercises")]
 	[SerializeField] private ParabolicVariables[] _samples = Level1Samples.samples;
 
-	[Header("Events")]
-	[SerializeField] private EventsResponse _eventsResponse;
-
 	private int[] _tries;
     private int _trie = 0;
-    private float toleranceError = 0.001f;
+    private int _velocityTrie = 0;
 
     void Start() {
 	    InitTries();
+	    _velocityInput?.SetDisable(true);
+		_snowWeapon?.AddListener2ShootEvent(IncreaseVelocityTrie);
     }
 
-    void Update() {
-	    UpdateScreeTexts();
-    }
+    private void UpdateScreeTexts() {
+	    var velocity = _snowWeapon.CurrentVelocity;
+	    var alpha = _snowWeapon.GetShootAngle();
 
-    private void UpdateScreeTexts()
-    {}
+	    var decomposedVelocity = PhysicsUtils.DecomposedVelocity(velocity, alpha);
+	    _vxText.text = $"{FloatUtils.Floor(decomposedVelocity.x, 2)} m/s";
+	    _voyText.text = $"{FloatUtils.Floor(decomposedVelocity.y, 2)} m/s";
+    }
 
     private void SetTrie() {
 	    var thisTrie = _samples[_tries[_trie]];
@@ -46,6 +59,15 @@ public class Level1Manager : Singleton<Level1Manager> {
 		var cannonRotation = _cannonTransform.rotation.eulerAngles;
 		cannonRotation.x = thisTrie.alpha;
 		_cannonTransform.rotation = Quaternion.Euler(cannonRotation);
+
+		_distanceText.text = $"{thisTrie.distance} m";
+
+		var isEasyLevel = _trie < _easyLevelUntilTrie;
+		_hintEasyLevel.SetActive(isEasyLevel);
+		if (isEasyLevel) {
+			var vx = PhysicsUtils.DecomposedVelocity(thisTrie.v, thisTrie.alpha).x;
+			_hintEasyLevelText.text = $"{FloatUtils.Floor(vx, 2)} m/s";
+		}
     }
 
     private void InitTries() {
@@ -59,28 +81,6 @@ public class Level1Manager : Singleton<Level1Manager> {
 	    SetTrie();
     }
 
-    public void ValidateQuestion(TMP_InputField answerField) {
-	    if (answerField.text.IsNullOrEmpty()) {
-		    _eventsResponse.failedResponseEvent.Invoke();
-		}
-	    else {
-		    var answer = float.Parse(answerField.text);
-		    if (Math.Abs(answer - _tries[_trie]) < toleranceError) {
-			    _trie += 1;
-
-			    if (_trie == _maxNumberTries) {
-				    _eventsResponse.finishedLevelEvent.Invoke();
-				}
-			    else {
-				    _eventsResponse.successfulResponseEvent.Invoke();
-				}
-		    }
-		    else {
-			    _eventsResponse.failedResponseEvent.Invoke();
-		    }
-		}
-    }
-
     public void ChangeTrie(int secondsToWait) {
 		StartCoroutine(
 			LevelManager.instance.WaitToExecute(
@@ -92,4 +92,16 @@ public class Level1Manager : Singleton<Level1Manager> {
 			)
 		);
     }
+
+    public void ShootFromScreen() {
+	    if (!_velocityInput.Text.IsNullOrEmpty()) {
+		    _snowWeapon.SetVelocityAndShoot(float.Parse(_velocityInput.Text));
+		    _velocityTrie = 0;
+	    }
+    }
+
+    public void IncreaseVelocityTrie() {
+	    _velocityInput?.SetDisable(++_velocityTrie < _velocityTriesToEnableInput);
+	    UpdateScreeTexts();
+	}
 }
