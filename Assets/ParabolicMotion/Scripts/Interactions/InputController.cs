@@ -17,7 +17,7 @@ public class InputController : MonoBehaviour {
 
 	public string Text => textMesh.text;
 
-	void Start() {
+	void Awake() {
 		textMesh = GetComponent<TMP_InputField>();
 		image = GetComponent<Image>();
 	}

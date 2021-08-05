@@ -39,7 +39,7 @@ public class PhotonUserPlayerWeapon : UserPlayerWeaponVR
     }
 
     protected override void SetupCannon() {
-	    _snowWeapon = FindObjectsOfType<PhotonSnowWeapon>().First(weapon => weapon.PlayerId == _playerId);
+	    bulletWeapon = FindObjectsOfType<PhotonBulletWeapon>().First(weapon => weapon.PlayerId == _playerId);
 	    base.SetupCannon();
     }
 

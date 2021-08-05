@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,12 @@ public class LevelManager : Singleton<LevelManager>
 
 	[Header("Events")]
 	public EventsResponse EventsResponse;
+
+	private HashSet<GameObject> _bullets;
+
+	void Awake() {
+		_bullets = new HashSet<GameObject>();
+	}
 
 	public void ResetLevel(bool resetPlayer) {
 		_resetLevelEvent.Invoke();
@@ -32,5 +39,21 @@ public class LevelManager : Singleton<LevelManager>
 	public void ChangeToNextLevel() {
 		SceneFadeManager.instance.FadeOut(2);
 		StartCoroutine(WaitToExecute(1, () => SceneManager.LoadScene(_nextLevel)));
+	}
+
+	public void AddBullet(GameObject bullet) {
+		_bullets.Add(bullet);
+	}
+
+	public void RemoveBullet(GameObject bullet) {
+		_bullets.Remove(bullet);
+	}
+
+	public void ClearBullets() {
+		foreach (var bullet in _bullets) {
+			Destroy(bullet);
+		}
+
+		_bullets.Clear();
 	}
 }

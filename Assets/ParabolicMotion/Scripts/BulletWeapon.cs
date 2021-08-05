@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public abstract class SnowWeapon : MonoBehaviourPun
+public abstract class BulletWeapon : MonoBehaviourPun
 {
 	[Header("Weapon Settings")] 
 	[SerializeField] protected Transform _middlePoint;
@@ -37,11 +38,14 @@ public abstract class SnowWeapon : MonoBehaviourPun
     protected Transform _transform;
     protected UnityEvent ShootEvent;
 
+    protected void Awake() {
+	    ShootEvent = new UnityEvent();
+    }
+
     protected void Start()
     {
         _transform = GetComponent<Transform>();
         _isPressed = false;
-        ShootEvent = new UnityEvent();
     }
 
     public void Rotate(Vector2 axisRotation)
@@ -114,7 +118,7 @@ public abstract class SnowWeapon : MonoBehaviourPun
         if (_isPressed && inputButton < 0.1)
         {
             // Stop to press ==> shoot
-            ShotSnowBall();
+            ShotBullet();
         }
         else if (_isPressed && inputButton >= 0.1)
         {
@@ -151,7 +155,7 @@ public abstract class SnowWeapon : MonoBehaviourPun
         _timePressed = Time.time;
     }
 
-    public void ShotSnowBall() {
+    public void ShotBullet() {
 	    var snowBall = InstantiateSnowBall();
 	    IBulletController ballController = snowBall.GetComponent<IBulletController>();
 
@@ -159,11 +163,13 @@ public abstract class SnowWeapon : MonoBehaviourPun
 	    ballController?.SetVelocity(GetVelocityVector(shootAngle), shootAngle, _projectileSpawn.forward);
 	    _isPressed = false;
 	    ShootEvent?.Invoke();
+
+	    LevelManager.instance.AddBullet(snowBall);
     }
 
     public void SetVelocityAndShoot(float velocity) {
 	    _currentVelocity = velocity;
-        ShotSnowBall();
+        ShotBullet();
     }
 
     public void AddListener2ShootEvent(UnityAction action) {

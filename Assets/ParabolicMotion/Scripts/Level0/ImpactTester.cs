@@ -34,6 +34,7 @@ public class ImpactTester : MonoBehaviour, IBulletController {
 		if (_wasReleased) {
 			Level0Manager.instance.SetLastImpactTime(Time.time);
 			audioSource.Stop();
+			GetComponent<Rigidbody>().isKinematic = false;
 		}
 	}
 	#endregion

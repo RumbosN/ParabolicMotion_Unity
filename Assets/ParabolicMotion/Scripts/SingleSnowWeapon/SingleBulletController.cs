@@ -54,6 +54,7 @@ public class SingleBulletController : MonoBehaviour, IBulletController {
     {
         if (_shouldDespawn)
         {
+            LevelManager.instance.RemoveBullet(gameObject);
             Destroy(gameObject);
         }
     }

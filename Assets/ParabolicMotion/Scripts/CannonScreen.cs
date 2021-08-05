@@ -9,10 +9,10 @@ public class CannonScreen : MonoBehaviour
 	[SerializeField] protected Image _velocityBar;
 	[SerializeField] protected Text _angleText;
 
-	protected SnowWeapon _snowWeaponParent;
+	protected BulletWeapon bulletWeaponParent;
 
 	protected virtual void Start() {
-		_snowWeaponParent = GetComponentInParent<SnowWeapon>();
+		bulletWeaponParent = GetComponentInParent<BulletWeapon>();
 	}
 
 	protected virtual void Update() {
@@ -21,13 +21,13 @@ public class CannonScreen : MonoBehaviour
 	}
 
 	protected void UpdateVelocity() {
-		var velocity = _snowWeaponParent.CurrentVelocity;
-		_velocityBar.fillAmount = velocity / _snowWeaponParent.maxVelocity;
+		var velocity = bulletWeaponParent.CurrentVelocity;
+		_velocityBar.fillAmount = velocity / bulletWeaponParent.maxVelocity;
 		_velocityText.text = velocity.ToString("F2");
 	}
 
 	protected void UpdateAngle() {
-		var radianAngle = _snowWeaponParent.GetShootAngle();
+		var radianAngle = bulletWeaponParent.GetShootAngle();
 		var degreeAngle = Mathf.CeilToInt(AngleUtils.RadiansToDegree(radianAngle));
 		_angleText.text = $"{degreeAngle.ToString()}°";
 	}

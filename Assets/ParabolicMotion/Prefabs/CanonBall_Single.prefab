@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154187034791857066}
   m_Layer: 0
-  m_Name: SnowBallSpawn
+  m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 579055455923731553}
   - component: {fileID: 9065422484374075024}
   - component: {fileID: 7811086883327897064}
-  - component: {fileID: 3396469816743742331}
+  - component: {fileID: 2623222575168086945}
   m_Layer: 0
   m_Name: Canon
   m_TagString: Untagged
@@ -393,7 +393,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3396469816743742331
+--- !u!114 &2623222575168086945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,11 +402,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3953130131364468404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca7fa6fbdbcf840448ac52e0ec8c7d18, type: 3}
+  m_Script: {fileID: 11500000, guid: fbbb9752dae520b4ab1acf80fbb195e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _middlePoint: {fileID: 4381139314423022754}
-  _projectilePrefab: {fileID: 6349394159693806695, guid: b677cc9e957c04e498175514d8872e16, type: 3}
+  _projectilePrefab: {fileID: 0}
   _projectileSpawn: {fileID: 154187034791857066}
   _maximumHorizontalAngle: 45
   _maximumVerticalAngle: 60
@@ -414,7 +414,7 @@ MonoBehaviour:
   _freezeRotationY: 0
   rotationAmount: 1.5
   maxVelocity: 60
-  _velocityIncreaseRate: 10
+  _velocityIncreaseRate: 5
 --- !u!1 &6828710150242253838
 GameObject:
   m_ObjectHideFlags: 0

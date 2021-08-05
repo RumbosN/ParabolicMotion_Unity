@@ -11,12 +11,12 @@ using Random = UnityEngine.Random;
 public class Level1Manager : Singleton<Level1Manager> {
 
 	[Header("Setup")]
-	[SerializeField] private int _maxNumberTries = 3;
+	[SerializeField] private int _maxNumberExercises = 3;
 	[SerializeField] private Transform _tableTransform;
 	[SerializeField] private Transform _otherGroundTransform;
 	[SerializeField] private Transform _cannonTransform;
 	[SerializeField] private int _easyLevelUntilTrie = 1;
-	[SerializeField] private SnowWeapon _snowWeapon;
+	[SerializeField] private BulletWeapon bulletWeapon;
 	[SerializeField] private int _velocityTriesToEnableInput = 3;
 
 
@@ -31,27 +31,27 @@ public class Level1Manager : Singleton<Level1Manager> {
 	[Header("Sample exercises")]
 	[SerializeField] private ParabolicVariables[] _samples = Level1Samples.samples;
 
-	private int[] _tries;
-    private int _trie = 0;
+	private int[] _exercises;
+    private int _exercise = 0;
     private int _velocityTrie = 0;
 
     void Start() {
 	    InitTries();
 	    _velocityInput?.SetDisable(true);
-		_snowWeapon?.AddListener2ShootEvent(IncreaseVelocityTrie);
+		bulletWeapon?.AddListener2ShootEvent(IncreaseVelocityTrie);
     }
 
     private void UpdateScreeTexts() {
-	    var velocity = _snowWeapon.CurrentVelocity;
-	    var alpha = _snowWeapon.GetShootAngle();
+	    var velocity = bulletWeapon.CurrentVelocity;
+	    var alpha = bulletWeapon.GetShootAngle();
 
-	    var decomposedVelocity = PhysicsUtils.DecomposedVelocity(velocity, alpha);
+	    var decomposedVelocity = PhysicsUtils.DecomposedVelocity(velocity, Mathf.Rad2Deg * alpha);
 	    _vxText.text = $"{FloatUtils.Floor(decomposedVelocity.x, 2)} m/s";
 	    _voyText.text = $"{FloatUtils.Floor(decomposedVelocity.y, 2)} m/s";
     }
 
-    private void SetTrie() {
-	    var thisTrie = _samples[_tries[_trie]];
+    private void SetExercise() {
+	    var thisTrie = _samples[_exercises[_exercise]];
 
 	    _otherGroundTransform.position = thisTrie.otherLandPosition;
 		_tableTransform.localPosition = new Vector3(_tableTransform.localPosition.x, thisTrie.tableLocalY, _tableTransform.localPosition.z);
@@ -62,7 +62,7 @@ public class Level1Manager : Singleton<Level1Manager> {
 
 		_distanceText.text = $"{thisTrie.distance} m";
 
-		var isEasyLevel = _trie < _easyLevelUntilTrie;
+		var isEasyLevel = _exercise < _easyLevelUntilTrie;
 		_hintEasyLevel.SetActive(isEasyLevel);
 		if (isEasyLevel) {
 			var vx = PhysicsUtils.DecomposedVelocity(thisTrie.v, thisTrie.alpha).x;
@@ -71,32 +71,34 @@ public class Level1Manager : Singleton<Level1Manager> {
     }
 
     private void InitTries() {
-	    _tries = new int[_maxNumberTries];
+	    _exercises = new int[_maxNumberExercises];
 
-	    for (int i = 0; i < _maxNumberTries; i++) {
-		    _tries[i] = Random.Range(0, _samples.Length);
-			print($"Trie {i} -> sample {_tries[i]}");
+	    for (int i = 0; i < _maxNumberExercises; i++) {
+		    _exercises[i] = Random.Range(0, _samples.Length);
+			print($"Trie {i} -> sample {_exercises[i]}");
 	    }
 
-	    SetTrie();
+	    SetExercise();
     }
 
-    public void ChangeTrie(int secondsToWait) {
-		StartCoroutine(
-			LevelManager.instance.WaitToExecute(
-				secondsToWait,
-				(() => {
-					SetTrie();
-					LevelManager.instance.ResetLevel(false);
-				})
-			)
-		);
+    public void NextExercise(int secondsToWait) {
+	    _exercise++;
+
+	    if (_exercise < _maxNumberExercises) {
+		    StartCoroutine(LevelManager.instance.WaitToExecute(secondsToWait, (() => {
+			    LevelManager.instance.ResetLevel(false);
+			    SetExercise();
+		    })));
+		}
+	    else {
+			LevelManager.instance?.EventsResponse.finishedLevelEvent?.Invoke();
+	    }
     }
 
     public void ShootFromScreen() {
 	    if (!_velocityInput.Text.IsNullOrEmpty()) {
-		    _snowWeapon.SetVelocityAndShoot(float.Parse(_velocityInput.Text));
-		    _velocityTrie = 0;
+		    bulletWeapon.SetVelocityAndShoot(float.Parse(_velocityInput.Text));
+		    ResetVelocityTrie();
 	    }
     }
 
@@ -104,4 +106,9 @@ public class Level1Manager : Singleton<Level1Manager> {
 	    _velocityInput?.SetDisable(++_velocityTrie < _velocityTriesToEnableInput);
 	    UpdateScreeTexts();
 	}
+
+    public void ResetVelocityTrie() {
+	    _velocityTrie = 0;
+		_velocityInput?.SetDisable(true);
+    }
 }

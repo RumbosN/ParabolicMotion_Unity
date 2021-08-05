@@ -3,7 +3,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhotonSnowWeapon : SnowWeapon
+public class PhotonBulletWeapon : BulletWeapon
 {
 
 	[SerializeField] protected EPlayerId _playerId;

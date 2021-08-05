@@ -95,6 +95,7 @@ public class PhotonBulletController : MonoBehaviourPun, IPunObservable, IBulletC
 
     private void Destroy()
     {
+        LevelManager.instance.RemoveBullet(gameObject);
         PhotonNetwork.Destroy(gameObject);
     }
 }

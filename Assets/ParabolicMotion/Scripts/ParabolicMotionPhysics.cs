@@ -32,21 +32,23 @@ public class ParabolicMotionPhysics : MonoBehaviour
 
 	private void Update() {
 		if (_isMoving) {
+
+			float t = Time.deltaTime;
+
+			Vector3 currentX = new Vector3(_transform.position.x, 0.0f, _transform.position.z);
+			Vector3 fwX = new Vector3(fw.x, 0.0f, fw.z).normalized;
+			Vector3 X = currentX + (fwX * Vox * t);
+
+			Vector3 currentY = new Vector3(0.0f, _transform.position.y, 0.0f);
+			var Vy = Voy + _g * t;
+			Vector3 Y = currentY + (Vector3.up * Vy * t) + (Vector3.up * 0.5f * _g * t * t);
+			var newPosition = X + Y;
+
+			//var impactRadius = (_transform.position - newPosition).magnitude + _myRadius;
 			var colliders = Physics.OverlapSphere(transform.position, _impactRadius, _impactMask);
 
 			if (colliders.Length == 0) {
-				float t = Time.deltaTime;
-
-				Vector3 currentX = new Vector3(_transform.position.x, 0.0f, _transform.position.z);
-				Vector3 fwX = new Vector3(fw.x, 0.0f, fw.z).normalized;
-				Vector3 X = currentX + (fwX * Vox * t);
-
-				Vector3 currentY = new Vector3(0.0f, _transform.position.y, 0.0f);
-				var Vy = Voy + _g * t;
-				Vector3 Y = currentY + (Vector3.up * Vy * t) + (Vector3.up * 0.5f * _g * t * t);
-
-				_transform.position = X + Y;
-
+				_transform.position = newPosition;
 				Voy = Vy;
 			}
 			else {

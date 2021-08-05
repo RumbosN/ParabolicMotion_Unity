@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class UserPlayerWeaponVR : MonoBehaviour
 {
-    protected SnowWeapon _snowWeapon;
+    protected BulletWeapon bulletWeapon;
     protected CannonAza _snowWeaponRightHand;
     protected CannonAza _snowWeaponLeftHand;
     protected Transform _transform;
@@ -22,19 +22,19 @@ public abstract class UserPlayerWeaponVR : MonoBehaviour
 
     void Update()
     {
-        if (_snowWeapon != null)
+        if (bulletWeapon != null)
         {
             if (LevelManager.instance.isDebugMode)
             {
                 if (OVRInput.GetDown(OVRInput.Button.One))
                 {
-                    _snowWeapon.ShotSnowBall();
+                    bulletWeapon.ShotBullet();
                 }
             }
 
             var buttonForce = OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) +
                               (Input.GetKey(KeyCode.Space) ? 1.0f : 0.01f);
-            _snowWeapon.VelocityAndShoot(buttonForce);
+            bulletWeapon.VelocityAndShoot(buttonForce);
             SnowWeaponMovementTouch();
             SnowWeaponMovementJoystick();
         }
@@ -45,7 +45,7 @@ public abstract class UserPlayerWeaponVR : MonoBehaviour
         Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
         if (OVRInput.Get(OVRInput.Button.Three))
         {
-            _snowWeapon.Rotate(secondaryAxis);
+            bulletWeapon.Rotate(secondaryAxis);
         }
     }
 
@@ -60,7 +60,7 @@ public abstract class UserPlayerWeaponVR : MonoBehaviour
                 _snowWeaponLeftHand.ActiveHand();
                 _snowWeaponRightHand.ActiveHand();
                 HideHands(false);
-                _snowWeapon.Rotate(_leftHandControllerAnchor, _rightHandControllerAnchor) ;
+                bulletWeapon.Rotate(_leftHandControllerAnchor, _rightHandControllerAnchor) ;
             }
             else
             {
@@ -86,9 +86,9 @@ public abstract class UserPlayerWeaponVR : MonoBehaviour
 
     protected virtual void SetupCannon()
     {
-        _snowWeapon = FindObjectsOfType<SnowWeapon>().First();
+        bulletWeapon = FindObjectsOfType<BulletWeapon>().First();
 
-        var cannonAzaChildren = _snowWeapon.GetComponentsInChildren<CannonAza>();
+        var cannonAzaChildren = bulletWeapon.GetComponentsInChildren<CannonAza>();
         _snowWeaponLeftHand = cannonAzaChildren.First(aza => aza.HandSide == EHandSide.LEFT);
         _snowWeaponRightHand = cannonAzaChildren.First(aza => aza.HandSide == EHandSide.RIGHT);
     }
