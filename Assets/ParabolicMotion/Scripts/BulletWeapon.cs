@@ -94,7 +94,7 @@ public abstract class BulletWeapon : MonoBehaviourPun
         var alpha = shootAngle;
         var fw = _transform.forward;
 
-        //_currentVelocity = 38f;
+        _currentVelocity = 35f;
         var vY = Mathf.Abs(_currentVelocity * Mathf.Sin(alpha));
         var vXUser = _currentVelocity * Mathf.Cos(alpha);
 

@@ -29,7 +29,7 @@ public class Level1Manager : Singleton<Level1Manager> {
 	[SerializeField] private TextMeshProUGUI _hintEasyLevelText;
 
 	[Header("Sample exercises")]
-	[SerializeField] private ParabolicVariables[] _samples = Level1Samples.samples;
+	[SerializeField] private ParabolicVariables[] _samples2 = Level1Samples.samples;
 
 	private int[] _exercises;
     private int _exercise = 0;
@@ -51,14 +51,15 @@ public class Level1Manager : Singleton<Level1Manager> {
     }
 
     private void SetExercise() {
-	    var thisTrie = _samples[_exercises[_exercise]];
+	    var thisTrie = _samples2[_exercises[_exercise]];
 
 	    _otherGroundTransform.position = thisTrie.otherLandPosition;
 		_tableTransform.localPosition = new Vector3(_tableTransform.localPosition.x, thisTrie.tableLocalY, _tableTransform.localPosition.z);
 
-		var cannonRotation = _cannonTransform.rotation.eulerAngles;
+		var cannonRotation = _cannonTransform.localRotation.eulerAngles;
 		cannonRotation.x = thisTrie.alpha;
-		_cannonTransform.rotation = Quaternion.Euler(cannonRotation);
+		cannonRotation.y = thisTrie.beta;
+		_cannonTransform.localRotation = Quaternion.Euler(cannonRotation);
 
 		_distanceText.text = $"{thisTrie.distance} m";
 
@@ -74,7 +75,7 @@ public class Level1Manager : Singleton<Level1Manager> {
 	    _exercises = new int[_maxNumberExercises];
 
 	    for (int i = 0; i < _maxNumberExercises; i++) {
-		    _exercises[i] = Random.Range(0, _samples.Length);
+		    _exercises[i] = Random.Range(0, _samples2.Length);
 			print($"Trie {i} -> sample {_exercises[i]}");
 	    }
 

@@ -4,10 +4,13 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
+[RequireComponent(typeof(ParabolicMotionPhysics))]
 public class SingleBulletController : MonoBehaviour, IBulletController {
 
     protected ParabolicMotionPhysics _parabolicMotionPhysics;
-    [SerializeField] protected bool _shouldDespawn = true;
+    
+    [SerializeField] 
+    protected bool _shouldDespawn = true;
 
 
     private void Awake()

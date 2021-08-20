@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1725472347272362556}
   - component: {fileID: 7341030343888578466}
   - component: {fileID: 2532157537929269676}
-  - component: {fileID: 196584843748914589}
+  - component: {fileID: 500477460545770708}
   m_Layer: 0
-  m_Name: CabbageBullet
+  m_Name: Cabbage3DBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shouldDespawn: 0
---- !u!114 &196584843748914589
+--- !u!114 &500477460545770708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,10 +136,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1725472347272362559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d28f029530f93b43b7c64010ca1c0f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 42fb2ff61f2c0fc4d8249b6786eee732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _impactRadius: 0.5
+  _impactRadius: 0.225
   _impactMask:
     serializedVersion: 2
     m_Bits: 16384

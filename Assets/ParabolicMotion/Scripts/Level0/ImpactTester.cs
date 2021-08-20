@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ParabolicMotionPhysics))]
 public class ImpactTester : MonoBehaviour, IBulletController {
 
 	public AudioSource audioSource;
 	private bool _wasReleased = false;
-	protected ParabolicMotionPhysics _parabolicMotionPhysics;
+	protected ParabolicMotion2DEngine _parabolicMotionPhysics;
 
 	void Awake() {
-		_parabolicMotionPhysics = GetComponent<ParabolicMotionPhysics>();
+		_parabolicMotionPhysics = GetComponent<ParabolicMotion2DEngine>();
 	}
 
 	public void ReleaseObject() {
