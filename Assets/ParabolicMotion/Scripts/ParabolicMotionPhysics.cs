@@ -73,7 +73,7 @@ public abstract class ParabolicMotionPhysics : MonoBehaviour
 	protected void CallImpactEvent(EBulletOverlapResponse overlapResponse) {
 		if (_callEventsWithImpact) {
 			if (overlapResponse == EBulletOverlapResponse.GOAL) {
-				//LevelManager.instance?.EventsResponse.successfulResponseEvent?.Invoke();
+				LevelManager.instance?.EventsResponse.successfulResponseEvent?.Invoke();
 			}
 			else {
 				LevelManager.instance?.EventsResponse.failedResponseEvent?.Invoke();

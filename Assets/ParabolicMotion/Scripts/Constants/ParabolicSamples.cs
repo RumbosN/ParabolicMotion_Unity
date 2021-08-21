@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public static class Level1Samples {
+public static class ParabolicSamples {
 	public static ParabolicVariables[] samples = new [] {
 		// 30 grados
 		new ParabolicVariables(35f, -30f, 0, new Vector3(-60.46f, 0f, -8.04f), 49.3f, 106f),
@@ -30,3 +30,4 @@ public static class Level1Samples {
 		new ParabolicVariables(51.2f, -60f, 0, new Vector3(-180.7f, 0f, -8.04f), 49.92f, 277f)
 	};
 }
+ 

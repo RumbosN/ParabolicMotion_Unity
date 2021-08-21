@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public abstract class BulletWeapon : MonoBehaviourPun
 {
@@ -20,6 +18,9 @@ public abstract class BulletWeapon : MonoBehaviourPun
     [SerializeField] protected bool _freezeRotationX = false;
     [SerializeField] protected bool _freezeRotationY = false;
     public float rotationAmount = 1.5f;
+
+    [Header("Debug Mode")]
+    [SerializeField] protected float _forceVelocityTo = -1.0f;
 
     protected float _simulationRate = 60f;
     protected float _rotationScaleMultiplier = 1.0f;
@@ -91,10 +92,13 @@ public abstract class BulletWeapon : MonoBehaviourPun
 
     protected Vector3 GetVelocityVector(float shootAngle)
     {
+        if (LevelManager.instance.isDebugMode && _forceVelocityTo > 0)
+        {
+            _currentVelocity = _forceVelocityTo;
+        }
         var alpha = shootAngle;
         var fw = _transform.forward;
 
-        _currentVelocity = 35f;
         var vY = Mathf.Abs(_currentVelocity * Mathf.Sin(alpha));
         var vXUser = _currentVelocity * Mathf.Cos(alpha);
 

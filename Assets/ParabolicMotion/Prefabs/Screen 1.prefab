@@ -1673,7 +1673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6582590842591845640, guid: 80982829c29b20c4b81e123cac4ee742, type: 3}
       propertyPath: m_text
-      value: Siguiente Nilvel
+      value: Siguiente Nivel
       objectReference: {fileID: 0}
     - target: {fileID: 6582590842591845640, guid: 80982829c29b20c4b81e123cac4ee742, type: 3}
       propertyPath: m_fontSize

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UI;
 using WebSocketSharp;
 using Random = UnityEngine.Random;
 
-public class Level1Manager : Singleton<Level1Manager> {
+public class Level2Manager : Singleton<Level2Manager> {
 
 	[Header("Setup")]
 	[SerializeField] private int _maxNumberExercises = 3;
@@ -29,7 +24,7 @@ public class Level1Manager : Singleton<Level1Manager> {
 	[SerializeField] private TextMeshProUGUI _hintEasyLevelText;
 
 	[Header("Sample exercises")]
-	[SerializeField] private ParabolicVariables[] _samples2 = Level1Samples.samples;
+	[SerializeField] private ParabolicVariables[] _samples = ParabolicSamples.samples;
 
 	private int[] _exercises;
     private int _exercise = 0;
@@ -51,7 +46,8 @@ public class Level1Manager : Singleton<Level1Manager> {
     }
 
     private void SetExercise() {
-	    var thisTrie = _samples2[_exercises[_exercise]];
+		// Rotation X and Y in the cannon is frozen and the user should find the velocity
+	    var thisTrie = _samples[_exercises[_exercise]];
 
 	    _otherGroundTransform.position = thisTrie.otherLandPosition;
 		_tableTransform.localPosition = new Vector3(_tableTransform.localPosition.x, thisTrie.tableLocalY, _tableTransform.localPosition.z);
@@ -75,7 +71,7 @@ public class Level1Manager : Singleton<Level1Manager> {
 	    _exercises = new int[_maxNumberExercises];
 
 	    for (int i = 0; i < _maxNumberExercises; i++) {
-		    _exercises[i] = Random.Range(0, _samples2.Length);
+		    _exercises[i] = Random.Range(0, _samples.Length);
 			print($"Trie {i} -> sample {_exercises[i]}");
 	    }
 

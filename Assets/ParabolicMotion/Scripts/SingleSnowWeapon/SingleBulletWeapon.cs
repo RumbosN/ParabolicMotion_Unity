@@ -1,7 +1,4 @@
-﻿using System;
-using Photon.Pun;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class SingleBulletWeapon : BulletWeapon
 {
