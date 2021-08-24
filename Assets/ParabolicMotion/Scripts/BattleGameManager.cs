@@ -18,7 +18,6 @@ public class BattleGameManager : Singleton<BattleGameManager>
 
     public Dictionary<EPlayerId, int> PlayerPoints => _playerPoints;
 
-    // Start is called before the first frame update
     void Start()
     {
         _playerPoints = new Dictionary<EPlayerId, int>();

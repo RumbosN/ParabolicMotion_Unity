@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class KeyboardController : MonoBehaviour {
 
@@ -26,6 +27,8 @@ public class KeyboardController : MonoBehaviour {
 		else {
 			ShowError();
 		}
+
+		UnselectKey();
 	}
 
 	public void ReplaceTextToInput(string text) {
@@ -35,10 +38,13 @@ public class KeyboardController : MonoBehaviour {
 		else {
 			ShowError();
 		}
+
+		UnselectKey();
 	}
 
 	public void RemoveLastToInput() {
 		currentInputText?.RemoveLast();
+		UnselectKey();
 	}
 
 	private void ShowError() {
@@ -58,5 +64,9 @@ public class KeyboardController : MonoBehaviour {
 			currentInputText.UnHover();
 			currentInputText = null;
 		}
+	}
+
+	public void UnselectKey() {
+		EventSystem.current.SetSelectedGameObject(null);
 	}
 }
