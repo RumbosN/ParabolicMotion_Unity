@@ -8,6 +8,7 @@ public class CannonScreen : MonoBehaviour
 	[SerializeField] protected Text _velocityText;
 	[SerializeField] protected Image _velocityBar;
 	[SerializeField] protected Text _angleText;
+	[SerializeField] protected bool _angleAccuracy = false;
 
 	protected BulletWeapon bulletWeaponParent;
 
@@ -28,7 +29,14 @@ public class CannonScreen : MonoBehaviour
 
 	protected void UpdateAngle() {
 		var radianAngle = bulletWeaponParent.GetShootAngle();
-		var degreeAngle = Mathf.CeilToInt(AngleUtils.RadiansToDegree(radianAngle));
-		_angleText.text = $"{degreeAngle.ToString()}°";
+
+		if (_angleAccuracy) {
+			var degreeAngle = FloatUtils.Floor(AngleUtils.RadiansToDegree(radianAngle), 2);
+			_angleText.text = $"{degreeAngle}°";
+		}
+		else {
+			var degreeAngle = Mathf.CeilToInt(AngleUtils.RadiansToDegree(radianAngle));
+			_angleText.text = $"{degreeAngle.ToString()}°";
+		}
 	}
 }

@@ -7,6 +7,7 @@ public abstract class BulletWeapon : MonoBehaviourPun
 {
 	[Header("Weapon Settings")] 
 	[SerializeField] protected Transform _middlePoint;
+	[SerializeField] protected bool _freeVelocity = false;
     
     [Header("Snow Ball")]
     [SerializeField] protected GameObject _projectilePrefab;
@@ -114,7 +115,7 @@ public abstract class BulletWeapon : MonoBehaviourPun
         var fw = _middlePoint.forward;
         var forwardY0 = new Vector3(fw.x, 0, fw.z).normalized;
         var cosAlpha = Vector3.Dot(fw, forwardY0) / (fw.magnitude * forwardY0.magnitude);
-        return Mathf.Acos(cosAlpha); // This angle is in radians
+        return Mathf.Acos(Mathf.Clamp(cosAlpha, -1.0f, 1.0f)); // This angle is in radians
     }
 
     public void VelocityAndShoot(float inputButton)
@@ -124,7 +125,7 @@ public abstract class BulletWeapon : MonoBehaviourPun
             // Stop to press ==> shoot
             ShotBullet();
         }
-        else if (_isPressed && inputButton >= 0.1)
+        else if (_isPressed && inputButton >= 0.1 && !_freeVelocity)
         {
             // Continue to press ==> increase velocity
             IncreaseVelocity(inputButton);
@@ -134,8 +135,11 @@ public abstract class BulletWeapon : MonoBehaviourPun
             // Start to press ==> init to increase velocity
             _isPressed = true;
             _timePressed = Time.time;
-            _currentVelocity = 0.0f;
             _velocityDirection = 1;
+
+            if (!_freeVelocity) {
+	            _currentVelocity = 0.0f;
+            }
         }
     }
 
@@ -171,13 +175,31 @@ public abstract class BulletWeapon : MonoBehaviourPun
 	    LevelManager.instance.AddBullet(snowBall);
     }
 
-    public void SetVelocityAndShoot(float velocity) {
-	    _currentVelocity = velocity;
+    public void SettingAndShoot(float? velocity, float? angle) {
+	    if (velocity != null)
+	    {
+		    _currentVelocity = (float)velocity;
+	    }
+
+	    if (angle != null) {
+		    var localRotation = _transform.localRotation.eulerAngles;
+		    localRotation.x = -(float)angle;
+		    _transform.localRotation = Quaternion.Euler(localRotation);
+        }
+
         ShotBullet();
     }
 
     public void AddListener2ShootEvent(UnityAction action) {
         ShootEvent.AddListener(action);
+    }
+
+    public void FreezeVelocity(bool freeze) {
+	    _freeVelocity = freeze;
+    }
+
+    public void SetVelocity(float velocity) {
+	    _currentVelocity = velocity;
     }
 
     public abstract GameObject InstantiateSnowBall();

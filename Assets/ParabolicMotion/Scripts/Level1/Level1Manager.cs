@@ -3,7 +3,7 @@ using UnityEngine;
 using WebSocketSharp;
 using Random = UnityEngine.Random;
 
-public class Level2Manager : Singleton<Level2Manager> {
+public class Level1Manager : Singleton<Level1Manager> {
 
 	[Header("Setup")]
 	[SerializeField] private int _maxNumberExercises = 3;
@@ -12,11 +12,11 @@ public class Level2Manager : Singleton<Level2Manager> {
 	[SerializeField] private Transform _cannonTransform;
 	[SerializeField] private int _easyLevelUntilTrie = 1;
 	[SerializeField] private BulletWeapon bulletWeapon;
-	[SerializeField] private int _velocityTriesToEnableInput = 3;
+	[SerializeField] private int _angleTriesToEnableInput = 3;
 
 
 	[Header("Text Variables")]
-	[SerializeField] private InputController _velocityInput;
+	[SerializeField] private InputController _angleInput;
 	[SerializeField] private TextMeshProUGUI _distanceText;
 	[SerializeField] private TextMeshProUGUI _vxText;
 	[SerializeField] private TextMeshProUGUI _voyText;
@@ -28,12 +28,12 @@ public class Level2Manager : Singleton<Level2Manager> {
 
 	private int[] _exercises;
     private int _exercise = 0;
-    private int _velocityTrie = 0;
+    private int _angleTrie = 0;
 
     void Start() {
 	    InitTries();
-	    _velocityInput?.SetDisable(true);
-		bulletWeapon?.AddListener2ShootEvent(IncreaseVelocityTrie);
+	    _angleInput?.SetDisable(true);
+		bulletWeapon?.AddListener2ShootEvent(IncreaseAngleTrie);
     }
 
     private void UpdateScreeTexts() {
@@ -46,16 +46,19 @@ public class Level2Manager : Singleton<Level2Manager> {
     }
 
     private void SetExercise() {
-		// Rotation X and Y in the cannon is frozen and the user should find the velocity
+		// Set  velocity and user should move the cannon in X to find the angle
 	    var thisTrie = _samples[_exercises[_exercise]];
 
 	    _otherGroundTransform.position = thisTrie.otherLandPosition;
 		_tableTransform.localPosition = new Vector3(_tableTransform.localPosition.x, thisTrie.tableLocalY, _tableTransform.localPosition.z);
 
 		var cannonRotation = _cannonTransform.localRotation.eulerAngles;
-		cannonRotation.x = thisTrie.alpha;
+		cannonRotation.x = 0;
 		cannonRotation.y = thisTrie.beta;
 		_cannonTransform.localRotation = Quaternion.Euler(cannonRotation);
+
+		bulletWeapon.SetVelocity(thisTrie.v);
+		bulletWeapon.FreezeVelocity(true);
 
 		_distanceText.text = $"{thisTrie.distance} m";
 
@@ -93,19 +96,20 @@ public class Level2Manager : Singleton<Level2Manager> {
     }
 
     public void ShootFromScreen() {
-	    if (!_velocityInput.Text.IsNullOrEmpty()) {
-		    bulletWeapon.SettingAndShoot(float.Parse(_velocityInput.Text), null);
-		    ResetVelocityTrie();
+	    if (!_angleInput.Text.IsNullOrEmpty()) {
+			// TODO: Check angle > 0 <= 60
+		    bulletWeapon.SettingAndShoot(null, float.Parse(_angleInput.Text));
+		    ResetAngleTrie();
 	    }
     }
 
-    public void IncreaseVelocityTrie() {
-	    _velocityInput?.SetDisable(++_velocityTrie < _velocityTriesToEnableInput);
+    public void IncreaseAngleTrie() {
+	    _angleInput?.SetDisable(++_angleTrie < _angleTriesToEnableInput);
 	    UpdateScreeTexts();
 	}
 
-    public void ResetVelocityTrie() {
-	    _velocityTrie = 0;
-		_velocityInput?.SetDisable(true);
+    public void ResetAngleTrie() {
+	    _angleTrie = 0;
+		_angleInput?.SetDisable(true);
     }
 }
