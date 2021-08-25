@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -50,7 +54,7 @@ public class LevelManager : Singleton<LevelManager>
 	}
 
 	public void ClearBullets() {
-		foreach (var bullet in _bullets) {
+		foreach (GameObject bullet in _bullets) {
 			Destroy(bullet);
 		}
 

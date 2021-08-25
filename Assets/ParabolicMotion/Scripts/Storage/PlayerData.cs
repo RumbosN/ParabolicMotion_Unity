@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
 
-[SerializeField]
+[Serializable]
 public class PlayerData {
 
 	public string UserName;
-	public string CurrentLevel;
+	public int CurrentLevel;
+
+	public PlayerData(string username, int currentLevel) {
+		UserName = username;
+		CurrentLevel = currentLevel;
+	}
 }
