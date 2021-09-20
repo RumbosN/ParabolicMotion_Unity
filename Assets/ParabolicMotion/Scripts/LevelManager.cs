@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Video;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -18,6 +19,15 @@ public class LevelManager : Singleton<LevelManager>
 	[SerializeField] private UnityEvent _resetLevelEvent;
 	[SerializeField] private string _nextLevel;
 
+	[Header("Video")]
+	[SerializeField] private bool _thereAreVideo;
+	[SerializeField] private GameObject _videoGO;
+	[SerializeField] private float _timeToHideVideo;
+	[SerializeField] private float _timeToDisappearedVideo = 2.0f;
+	[SerializeField] private UnityEvent _beforeVideo;
+	[SerializeField] private UnityEvent _afterVideo;
+
+
 	[Header("Events")]
 	public EventsResponse EventsResponse;
 
@@ -25,6 +35,12 @@ public class LevelManager : Singleton<LevelManager>
 
 	void Awake() {
 		_bullets = new HashSet<GameObject>();
+
+		if (_thereAreVideo) {
+			_videoGO.SetActive(true);
+			_beforeVideo?.Invoke();
+			StartCoroutine(DisappearedVideo());
+		}
 	}
 
 	public void ResetLevel(bool resetPlayer) {
@@ -59,5 +75,22 @@ public class LevelManager : Singleton<LevelManager>
 		}
 
 		_bullets.Clear();
+	}
+
+	protected IEnumerator DisappearedVideo() {
+		yield return new WaitForSeconds(_timeToHideVideo);
+
+		StartCoroutine(HideVideo());
+		_afterVideo?.Invoke();
+
+		Material material = _videoGO.GetComponent<MeshRenderer>().material;
+		Color color = material.color;
+		color.a = 0;
+		material.DOColor(color, _timeToDisappearedVideo);
+	}
+
+	protected IEnumerator HideVideo() {
+		yield return new WaitForSeconds(_timeToDisappearedVideo);
+		_videoGO.SetActive(false);
 	}
 }
