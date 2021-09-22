@@ -1,16 +1,25 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : Singleton<MenuManager> {
 
+	[SerializeField] private GameObject _videoObject;
+	[SerializeField] private float _videoTime;
+	[SerializeField] private float _videoTimeHide;
+
 	[SerializeField] private GameObject _loginCanvas;
 	[SerializeField] private GameObject _levelsCanvas;
 	[SerializeField] private LevelCard[] _levelCards;
 
 	void Start() {
-		ShowLogin(true);
+		_videoObject.SetActive(true);
+		_loginCanvas.SetActive(false);
+		_levelsCanvas.SetActive(false);
+		StartCoroutine(DisappearedVideo());
 	}
 
 	public void Login(TMP_InputField usernameField) {
@@ -50,5 +59,22 @@ public class MenuManager : Singleton<MenuManager> {
 
 	public void ChangeToLevel(string level) {
 		SceneManager.LoadScene(level);
+	}
+
+	protected IEnumerator DisappearedVideo() {
+		yield return new WaitForSeconds(_videoTime);
+
+		StartCoroutine(HideVideo());
+
+		Material material = _videoObject.GetComponent<MeshRenderer>().material;
+		Color color = material.color;
+		color.a = 0;
+		material.DOColor(color, _videoTimeHide);
+	}
+
+	protected IEnumerator HideVideo() {
+		yield return new WaitForSeconds(_videoTimeHide);
+		_videoObject.SetActive(false);
+		ShowLogin(true);
 	}
 }

@@ -79,9 +79,9 @@ public abstract class BulletWeapon : MonoBehaviourPun
 	    var normalPlane = Vector3.Cross(forward, Vector3.up);
 
 	    var up = Vector3.Cross(forward, handsVector);
-        up = Vector3.ProjectOnPlane(Vector3.up, normalPlane);
+        var up2 = Vector3.ProjectOnPlane(up, normalPlane);
 
-        var newRotation = Quaternion.LookRotation(forward, up).eulerAngles;
+        var newRotation = Quaternion.LookRotation(forward, up2).eulerAngles;
         if (_freezeRotationX) {
 	        newRotation.x = _transform.rotation.eulerAngles.x;
         }
